@@ -9,12 +9,7 @@ $_SESSION['Start']= date("H:i:s");
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <title>INF3</title>
-
- <div class="carre">
-   <p >
-     <a href="indexINF3.html">
- </div>
- <div align="center">
+ </head>
 <?php
 if (isset($_POST['formconnect'])){
   $mailconnect=htmlspecialchars($_POST['mailconnect']);
@@ -41,13 +36,10 @@ if (isset($_POST['formconnect'])){
 
 }
  ?>
-</div></body>
-
-<html><head><title>TUTO PHP</title><meta charset="utf-8"></head>
-<body>
-<div><h3>Connexion</h3>
+ <body>
+<h3 align ="center">Connexion</h3>
   <br><br><br>
-<form method ="POST" action ="">
+<form align ="center" method ="POST" action ="">
 <label class="col-sm-2 col-form-label"for="mail">Email :</label>
 <input type="email" placeholder="Votre email" name="mailconnect"/><br>
 <label class="col-sm-2 col-form-label" for="mdpconnect">mot de passe :</label>

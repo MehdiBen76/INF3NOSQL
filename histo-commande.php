@@ -13,6 +13,7 @@ $hist=$h->fetchAll();
   <title> Historique de vos commandes </title>
   <h1 align="center"> Historique de vos commandes </h1>
 </head>
+<body>
 <div align="center">
 <?php
 foreach ($hist as $key) {
@@ -48,7 +49,6 @@ if(isset($_POST['x'])){
 }
  ?>
 
-<body>
   <br>
 <div align="center">
 <form method="POST">

@@ -5,14 +5,9 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <title> INF3 </title>
-
- <div class="carre">
-   <p >
-     <a href="indexINF3.html">
-     <p id ="main"> Votre site e-commerce </p> <br>
-     <p id ="main2">
- </p>
- </div>
+</head>
+<body>
+  <div align ="center">
 <?php
 //session_start();
 $bdd= new PDO('mysql:host=localhost;dbname=inf3','root','root');
@@ -29,7 +24,7 @@ if (isset($_POST['forminscription'])){
       if($mailexist==0){
           $insertmbr = $bdd->prepare('INSERT INTO user(nom,mail,mdp) VALUES(?,?,?)');
           $insertmbr->execute(array($nom,$email,$motdepasse));
-          $erreur="Votre compte à bien été creer <a href= \"testmembre_connection.php\"> Me connecter </a>";
+          $erreur=" Votre compte à bien été creer <a href= \"testmembre_connection.php\"> Me connecter </a>";
         }
 
       else {
@@ -49,30 +44,39 @@ if (isset($_POST['forminscription'])){
 }
  ?>
 
-<html><head><title>Notre site e-commerce</title><meta charset="utf-8"></head>
-<body>
+</div>
 <div align="center">
   <h3> Inscription</h3>
   <br><br>
-  <form class="form-group row" method ="POST" action ="">
+
+  <form method ="POST" action ="">
 <label class="col-sm-2 col-form-label" for="email">Email :</label>
-<input  type="email" placeholder="Votre email" name="email"/><br>
+<input  type="email" placeholder="Votre email" name="email"/><br><br>
 <label class="col-sm-2 col-form-label" for="nom">votre nom :</label>
 <input  type="text" placeholder="Votre nom" name="nom"/><br>
 <label class="col-sm-2 col-form-label" for="motdepasse">mot de passe :</label>
-<input type="password" placeholder="Votre mdp" name="motdepasse"/><br><br><br><br>
+<input type="password" placeholder="Votre mdp" name="motdepasse"/>
+
+
+<br><br><br><br>
+<div align="center">
 <input type="submit" value="je m'inscris" name="forminscription"/>
 <br><br>
-<button><a href="pageconnection_iscription.html"> Deja inscrit ? </a></button>
+<button>
+  <a href="indexINF3.html"> Deja inscrit ? </a>
+</button>
 
+</div>
+<div align="center">
 
 <?php
 if(isset($erreur)){
-  echo $erreur;
+  echo "<a align=\"center\"> ".$erreur. "</a>";
 }
  ?>
-
-  </form>
+</form>
+ </div>
+</div>
 
 </body>
 </html>
