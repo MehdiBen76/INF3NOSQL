@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd= new PDO('mysql:host=localhost;dbname=inf3','root','root');
+$bdd= new PDO('mysql:host=localhost;dbname=inf3','root','');
 $h=$bdd ->prepare("SELECT DISTINCT * FROM commande WHERE  commande.idUser= ? GROUP BY commande.idCommande");
 $h->execute(array($_SESSION['id']));
 $hist=$h->fetchAll();

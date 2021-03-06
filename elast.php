@@ -87,7 +87,7 @@ function deleteAPI($url,$token = false){
 
 <body>
   <a href="panier.php">
-  <button>Accéder au panier de <?= $redis->llen("panier") . " article(s)" ?></button>
+  <button>Accéder au panier</button>
   <br>
   <br>
 </a>
@@ -121,7 +121,9 @@ if($response){
 
 function afficherProduit($nomProduit,$catProduit,$prixProduit){
 
-    echo "
+if (isset($_GET['clientsearch']) AND isset($_GET['search'])) {
+
+echo "
 
     <div class=\"grid-container\">
     <div class=\"card\">
@@ -135,12 +137,38 @@ function afficherProduit($nomProduit,$catProduit,$prixProduit){
       <input type=\"hidden\" value=\"$nomProduit\" name=\"nom\" >
       <input type=\"hidden\" value=\"$catProduit\" name=\"cat\" >
       <input type=\"hidden\" value=\"$prixProduit\" name=\"prix\" >
-    <input type=\"hidden\" value=\"$clientsearch\" name=\"client\" >
-    <input type=\"hidden\" value=\"$search\" name=\"search\" >
+    <input type=\"hidden\" value=\"".$_GET['clientsearch']."\" name=\"client\" >
+    <input type=\"hidden\" value=\"".$_GET['search']."\" name=\"client\" >
 
 </form>
       </div>";
+
+
+} else {
+  echo "
+
+    <div class=\"grid-container\">
+    <div class=\"card\">
+
+<form action=\"elast.php\" method=\"post\">
+      <!-- <img alt=\"Produit 1\" style=\"width:100%\"> -->
+      <h1>".$nomProduit."</h1>
+      <p class=\"price\" name=\"prix\">".$prixProduit."€</p>
+      <p>".$catProduit."</p>
+      <p><input type=\"submit\" value=\"Ajouter au panier\" name=\"panier\"></p>
+      <input type=\"hidden\" value=\"$nomProduit\" name=\"nom\" >
+      <input type=\"hidden\" value=\"$catProduit\" name=\"cat\" >
+      <input type=\"hidden\" value=\"$prixProduit\" name=\"prix\" >
+    <input type=\"hidden\" value=\"".$_POST['clientsearch']."\" name=\"clientsearch\" >
+    <input type=\"hidden\" value=\"".$_POST['search']."\" name=\"client\" >
+
+</form>
+      </div>";
+
 }
+}
+
+
 
 function addPanier() {
 
@@ -159,7 +187,7 @@ if (isset($_POST['panier'])) {
    $redis->set($_POST['nom'], $_POST['nom']. "_".$_POST['cat']."_".$_POST['prix']."_1");
    $redis->expire($_POST['nom'], 300);
 
-header("Location: https://localhost/inf3-nosql/elast.php?clientsearch=" . $_POST['client'] . "&search=" . $_POST['search']);
+header("Location: https://localhost/INF3NOSQL/elast.php?clientsearch=" . $_POST['clientsearch'] . "&search=" . $_POST['client']);
 
 }
 }

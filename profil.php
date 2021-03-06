@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd= new PDO('mysql:host=localhost;dbname=inf3','root','root');
+$bdd= new PDO('mysql:host=localhost;dbname=inf3','root','');
 if(isset($_GET['id']) AND $_GET['id']>0){
   $getid=intval($_GET['id']); //securisation
   $requser=$bdd->prepare('SELECT * FROM user WHERE idUser = ?');

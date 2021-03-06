@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd= new PDO('mysql:host=localhost;dbname=inf3','root','root');
+$bdd= new PDO('mysql:host=localhost;dbname=inf3','root','');
 $_SESSION['Start']= date("H:i:s");
 ?>
 <html>

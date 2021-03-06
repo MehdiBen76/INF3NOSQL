@@ -19,4 +19,4 @@ foreach ($list as $article) {
 }
 $bdd->exec("UPDATE commande SET prix_total = $total WHERE idCommande = $commande");
 $redis->del("panier");
-header("Location: https://localhost/inf3-nosql/histo-commande.php");
+header("Location: https://localhost/INF3NOSQL/histo-commande.php");

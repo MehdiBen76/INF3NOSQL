@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd= new PDO('mysql:host=localhost;dbname=inf3','root','root');
+$bdd= new PDO('mysql:host=localhost;dbname=inf3','root','');
 if(isset($_SESSION['id'])){
   echo "<h1> Bonjour ". $_SESSION['nom']."</h1>";
   //$requser=$bdd->prepare("SELECT * FROM membre WHERE id = ?");
@@ -11,7 +11,7 @@ if(isset($_SESSION['id'])){
   //changement mail
   if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] != $_SESSION['mail']){
     $newmail=htmlspecialchars($_POST['newmail']);
-    $insertmail=$bdd->prepare("UPDATE user SET mail = ? WHERE id = ?");
+    $insertmail=$bdd->prepare("UPDATE user SET mail = ? WHERE idUser = ?");
     $insertmail->execute(array($newmail,$_SESSION['id']));
     $_SESSION['mail']=$_POST['newmail'];
     header('Location:profil.php?id='.$_SESSION['id']);
@@ -20,7 +20,7 @@ if(isset($_SESSION['id'])){
   if(isset($_POST['newmdp']) AND !empty($_POST['newmdp'])){
     $newmdp=sha1($_POST['newmdp']);
     if($_POST['newmdp'] != $_SESSION['mdp']){
-      $insertmdp=$bdd->prepare("UPDATE user SET mdp = ? WHERE id = ?");
+      $insertmdp=$bdd->prepare("UPDATE user SET mdp = ? WHERE idUser = ?");
       $insertmdp->execute(array($newmdp,$_SESSION['id']));
       $_SESSION['mdp']=$_POST['newmdp'];
       header('Location:profil.php?id='.$_SESSION['id']);

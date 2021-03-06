@@ -10,7 +10,7 @@
   <div align ="center">
 <?php
 //session_start();
-$bdd= new PDO('mysql:host=localhost;dbname=inf3','root','root');
+$bdd= new PDO('mysql:host=localhost;dbname=inf3','root','');
 if (isset($_POST['forminscription'])){
   if(!empty($_POST['email']) AND !empty($_POST['motdepasse']))
   {
